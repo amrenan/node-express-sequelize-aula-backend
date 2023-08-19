@@ -1,5 +1,5 @@
-const express = requere("express");
-const cors = requere("cors");
+const express = require ("express");
+const cors = require ("cors");
 
 const app = express();
 
@@ -14,11 +14,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.get("/",(req,res)=>{
-    res.json({message: 'Hello, Word!'})
+    res.json ({message: "Hello, Word!"})
 });
 
 const PORT = process.env.PORT || 8080;
-app.çisten(PORT, ()=>{
+app.listen(PORT, ()=>{
     console.log(`Server funcionando na porta ${PORT}.`);
 
 });
