@@ -71,6 +71,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
     const id = req.params.id;
+
     Item.update(req.body, {
         where: {id: id}
     })
@@ -119,9 +120,31 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-
+    Item.destroy({
+        where: {},
+        truncate: false
+    })
+    .then(nums => {
+        res.send({ message: `${nums} Itens foram apagados com sucesso.`});
+    })
+    .catch(err =>{
+        res.status(500).send({
+            message:
+            err.message || "Houve algum erro ao tentar apagar todos os itens."
+        });
+    });
 };
 
 exports.findAllFlammabes = (req, res) => {
+    Item.findAll({ where: {isFlammable: true } })
+    .then(data => {
+        res.sende(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+            err.message || "Algum erro ocorreu ao tentar pesquisar todos os itens inflamáveis."
+        });
+    });
 
 };
