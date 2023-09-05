@@ -57,13 +57,13 @@ exports.findOne = (req, res) => {
             res.send(data);
         } else {
             res.status(404).send({
-                message: `Não foi possível encontrar um item com o id=${id}.`
+                message: `Não foi possível encontrar um item com o id = ${id}.`
         });
         }
     })
     .catch(err => {
         res.status(500).send({
-         message: "Ocorreu um erro ao tentar encontrar um item com o id=" + id   
+         message: "Ocorreu um erro ao tentar encontrar um item com o id = " + id   
         });
     });
 
