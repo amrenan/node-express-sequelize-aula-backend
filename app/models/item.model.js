@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) =>{
         quantity: {
             type: Sequelize.INTEGER
         },
-        is_flammanble: {
+        is_flammable: {
             type: Sequelize.BOOLEAN
         }
     });

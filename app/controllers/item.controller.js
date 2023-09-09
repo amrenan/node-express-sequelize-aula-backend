@@ -4,6 +4,7 @@ const Item = db.items;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
+    
     if (!req.body.name) {
         res.status(400).send({
             message: "O conteúdo não pode ser vazio!"
@@ -15,7 +16,7 @@ exports.create = (req, res) => {
         name: req.body.name,
         description: req.body.description,
         quantity: req.body.quantity,
-        is_flammeble: req.body.is_flammeble ? req.body.is_flammeble : false
+        is_flammable: req.body.is_flammable ? req.body.is_flammable : false
 
      }
 
@@ -135,8 +136,8 @@ exports.deleteAll = (req, res) => {
     });
 };
 
-exports.findAllFlammabes = (req, res) => {
-    Item.findAll({ where: {isFlammable: true } })
+exports.findAllFlammables = (req, res) => {
+    Item.findAll({ where: {is_flammable: true } })
     .then(data => {
         res.sende(data);
     })
