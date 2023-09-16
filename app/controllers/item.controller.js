@@ -13,7 +13,13 @@ exports.create = (req, res) => {
     }
     
     const item = {
-        name: req.body.name,
+        username: req.body.name,
+        cpf: req.body.cpf,
+        council_number: req.body.council_number,
+        address: req.body.address,
+        medical_specialty: req.body.medical_specialty,
+        registraction: req.body.resgistraction,
+        password: req.body.password,
         description: req.body.description,
         quantity: req.body.quantity,
         is_flammable: req.body.is_flammable ? req.body.is_flammable : false
