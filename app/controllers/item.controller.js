@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     }
     
     const item = {
-        username: req.body.name,
+        name: req.body.name,
         cpf: req.body.cpf,
         council_number: req.body.council_number,
         address: req.body.address,
