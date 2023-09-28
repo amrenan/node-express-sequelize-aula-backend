@@ -1,6 +1,6 @@
 const { where } = require("sequelize");
 const db = require("../models");
-const Doctor = db.doctor;
+const Doctor = db.doctors;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -12,7 +12,7 @@ exports.create = (req, res) => {
         return
     }
     
-    const Doctor = {
+    const doctors = {
         name: req.body.name,
         crm: req.body.crm,
         address: req.body.address,
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
 
      }
 
-     Doctor.create(Doctor)
+     Doctor.create(doctors)
      .then(data => {
          res.send(data);
      })

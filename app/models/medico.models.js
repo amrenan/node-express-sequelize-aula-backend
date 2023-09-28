@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) =>{
         
         
         name: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
         },
 
         crm: {
@@ -17,11 +17,11 @@ module.exports = (sequelize, Sequelize) =>{
         },
 
         especialidade: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
         },
 
         contact: {
-            type: Sequelize.INTEGER
+            type: Sequelize.STRING,
         },
         
 

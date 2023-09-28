@@ -1,5 +1,5 @@
 module.exports = app => {
-    const doctors = require("../controllers/paciente.controller");
+    const doctors = require("../controllers/medico.controller.js");
 
     var router = require("express").Router();
 
@@ -17,7 +17,7 @@ module.exports = app => {
 
     router.delete("/:id", doctors.deleteAll);
 
-    app.use('/api/paciente', router);
+    app.use('/api/medico', router);
     
 
 };
