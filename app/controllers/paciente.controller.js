@@ -12,21 +12,18 @@ exports.create = (req, res) => {
         return
     }
     
-    const item = {
+    const paciente = {
         name: req.body.name,
         cpf: req.body.cpf,
-        council_number: req.body.council_number,
         address: req.body.address,
-        medical_specialty: req.body.medical_specialty,
-        registraction: req.body.resgistraction,
-        password: req.body.password,
+        cns: req.body.cns,
+        contact: req.body.contact,
         description: req.body.description,
-        quantity: req.body.quantity,
         is_flammable: req.body.is_flammable ? req.body.is_flammable : false
 
      }
 
-     Item.create(item)
+     Item.create(paciente)
      .then(data => {
          res.send(data);
      })
