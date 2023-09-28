@@ -23,6 +23,7 @@ db.sequelize.sync()
     });
 
 require("./app/routes/paciente.routes")(app);
+require("./app/routes/medico.routes")(app);
 
 app.get("/",(req,res)=>{
     res.json ({message: "Hello, Word!"})

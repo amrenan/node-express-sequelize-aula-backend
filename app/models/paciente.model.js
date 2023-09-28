@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) =>{
-    const paciente = sequelize.define("paciente", {
+    const Patient = sequelize.define("patients", {
         
         
         name: {
@@ -35,6 +35,6 @@ module.exports = (sequelize, Sequelize) =>{
             type: Sequelize.BOOLEAN
         }
     });
-    return paciente;
+    return Patient;
 };
 

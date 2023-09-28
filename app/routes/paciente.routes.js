@@ -1,21 +1,21 @@
 module.exports = app => {
-    const paciente = require("../controllers/paciente.controller");
+    const patients = require("../controllers/paciente.controller");
 
     var router = require("express").Router();
 
-    router.post("/", paciente.create);
+    router.post("/", patients.create);
 
-    router.get("/", paciente.findAll);
+    router.get("/", patients.findAll);
 
-    router.get("/flammables", paciente.findAllFlammables);
+    router.get("/flammables", patients.findAllFlammables);
 
-    router.get("/:id", paciente.findOne);
+    router.get("/:id", patients.findOne);
 
-    router.put("/:id", paciente.update);
+    router.put("/:id", patients.update);
 
-    router.delete("/:id", paciente.delete);
+    router.delete("/:id", patients.delete);
 
-    router.delete("/:id", paciente.deleteAll);
+    router.delete("/:id", patients.deleteAll);
 
     app.use('/api/paciente', router);
     

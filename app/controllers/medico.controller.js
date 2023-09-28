@@ -1,6 +1,6 @@
 const { where } = require("sequelize");
 const db = require("../models");
-const Item = db.items;
+const Doctor = db.doctor;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -12,7 +12,7 @@ exports.create = (req, res) => {
         return
     }
     
-    const paciente = {
+    const Doctor = {
         name: req.body.name,
         crm: req.body.crm,
         address: req.body.address,
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
 
      }
 
-     Item.create(paciente)
+     Doctor.create(Doctor)
      .then(data => {
          res.send(data);
      })
@@ -39,7 +39,7 @@ exports.findAll = (req, res) => {
     const name = req.body.name;
     var condition = name ? {name: {[Op.like]: `%${name}%`}} : null;
 
-    Item.findAll({where: condition})
+    Doctor.findAll({where: condition})
     .then(data => {
         res.send(data);
     })
@@ -54,7 +54,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Item.findByPk(id)
+    Doctor.findByPk(id)
     .then(data => {
         if (data) {
             res.send(data);
@@ -75,7 +75,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Item.update(req.body, {
+    Doctor.update(req.body, {
         where: {id: id}
     })
     .then(num => {
@@ -100,7 +100,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Item.destroy({
+    Doctor.destroy({
         where: {id: id}
     })
     .then(num => {
@@ -123,7 +123,7 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-    Item.destroy({
+    Doctor.destroy({
         where: {},
         truncate: false
     })
@@ -139,7 +139,7 @@ exports.deleteAll = (req, res) => {
 };
 
 exports.findAllFlammables = (req, res) => {
-    Item.findAll({ where: {is_flammable: true } })
+    Doctor.findAll({ where: {is_flammable: true } })
     .then(data => {
         res.sende(data);
     })

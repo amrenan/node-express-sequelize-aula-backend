@@ -1,6 +1,6 @@
 const { where } = require("sequelize");
 const db = require("../models");
-const Item = db.items;
+const Patient = db.patients;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -12,7 +12,7 @@ exports.create = (req, res) => {
         return
     }
     
-    const paciente = {
+    const patients = {
         name: req.body.name,
         cpf: req.body.cpf,
         address: req.body.address,
@@ -23,7 +23,7 @@ exports.create = (req, res) => {
 
      }
 
-     Item.create(paciente)
+     Patient.create(patients)
      .then(data => {
          res.send(data);
      })
@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
     const name = req.body.name;
     var condition = name ? {name: {[Op.like]: `%${name}%`}} : null;
 
-    Item.findAll({where: condition})
+    Patient.findAll({where: condition})
     .then(data => {
         res.send(data);
     })
@@ -55,7 +55,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Item.findByPk(id)
+    Patient.findByPk(id)
     .then(data => {
         if (data) {
             res.send(data);
@@ -76,7 +76,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Item.update(req.body, {
+    Patient.update(req.body, {
         where: {id: id}
     })
     .then(num => {
@@ -101,7 +101,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Item.destroy({
+    Patient.destroy({
         where: {id: id}
     })
     .then(num => {
@@ -124,7 +124,7 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-    Item.destroy({
+    Patient.destroy({
         where: {},
         truncate: false
     })
@@ -140,7 +140,7 @@ exports.deleteAll = (req, res) => {
 };
 
 exports.findAllFlammables = (req, res) => {
-    Item.findAll({ where: {is_flammable: true } })
+    Patient.findAll({ where: {is_flammable: true } })
     .then(data => {
         res.sende(data);
     })
