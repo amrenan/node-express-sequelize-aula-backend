@@ -1,29 +1,25 @@
 const { where } = require("sequelize");
 const db = require("../models");
-const Patient = db.patients;
+const Consulta = db.consultas;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
     
-    if (!req.body.name) {
+    if (!req.body.date) {
         res.status(400).send({
             message: "O conteúdo não pode ser vazio!"
         });
         return
     }
-    
-    const patients = {
-        name: req.body.name,
-        cpf: req.body.cpf,
-        address: req.body.address,
-        cns: req.body.cns,
-        contact: req.body.contact,
-        description: req.body.description,
-        is_flammable: req.body.is_flammable ? req.body.is_flammable : false
 
-     }
+  const consultas = {
+    date: req.body.date,
+    hour: req.body.hour,
+    is_flammable: req.body.is_flammable ? req.body.is_flammable : false
+}
 
-     Patient.create(patients)
+
+Consulta.create(consultas)
      .then(data => {
          res.send(data);
      })
@@ -34,13 +30,14 @@ exports.create = (req, res) => {
          })
      })
 
-};
+
+}; 
 
 exports.findAll = (req, res) => {
     const name = req.body.name;
     var condition = name ? {name: {[Op.like]: `%${name}%`}} : null;
 
-    Patient.findAll({where: condition})
+    Consulta.findAll({where: condition})
     .then(data => {
         res.send(data);
     })
@@ -55,7 +52,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Patient.findByPk(id)
+    Consulta.findByPk(id)
     .then(data => {
         if (data) {
             res.send(data);
@@ -76,7 +73,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Patient.update(req.body, {
+    Consulta.update(req.body, {
         where: {id: id}
     })
     .then(num => {
@@ -101,7 +98,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Patient.destroy({
+    Consulta.destroy({
         where: {id: id}
     })
     .then(num => {
@@ -123,45 +120,3 @@ exports.delete = (req, res) => {
 
 };
 
-exports.deleteAll = (req, res) => {
-    Patient.destroy({
-        where: {},
-        truncate: false
-    })
-    .then(nums => {
-        res.send({ message: `${nums} Itens foram apagados com sucesso.`});
-    })
-    .catch(err =>{
-        res.status(500).send({
-            message:
-            err.message || "Houve algum erro ao tentar apagar todos os itens."
-        });
-    });
-};
-
-exports.findAllFlammables = (req, res) => {
-    Patient.findAll({ where: {is_flammable: true } })
-    .then(data => {
-        res.sende(data);
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Algum erro ocorreu ao tentar pesquisar todos os itens inflamáveis."
-        });
-    });
-
-    Patient.findAll({
-        include:{
-            model: doctors,
-            as: 'doctors',
-        },
-    })
-    .then((patients) => {
-        console.log(db.patients);
-    })
-    .catch((err ) =>{
-        console.err("Erro ao recuperar os pacientes: ", err);
-    });
-
-};

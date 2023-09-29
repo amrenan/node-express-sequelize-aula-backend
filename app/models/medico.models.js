@@ -1,3 +1,5 @@
+const { doctors } = require(".");
+
 module.exports = (sequelize, Sequelize) =>{
     const Doctor = sequelize.define("doctors", {
         
@@ -29,5 +31,8 @@ module.exports = (sequelize, Sequelize) =>{
             type: Sequelize.BOOLEAN
         }
     });
-    return Doctor;
+    Doctor.belongsToMany (Patient,
+        {through: Consulta});
+        Doctor.hasMany(Consulta);
 };
+

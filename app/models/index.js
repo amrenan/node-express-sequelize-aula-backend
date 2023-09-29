@@ -21,5 +21,6 @@ db.sequelize = sequelize;
 
 db.patients = require("./paciente.model.js")(sequelize,Sequelize);
 db.doctors = require("./medico.models.js")(sequelize,Sequelize);
+db.consultas = require("./consulta.models.js")(sequelize,Sequelize);
 
 module.exports = db;
