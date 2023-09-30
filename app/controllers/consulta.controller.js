@@ -15,7 +15,7 @@ exports.create = (req, res) => {
   const consultas = {
     date: req.body.date,
     hour: req.body.hour,
-    is_flammable: req.body.is_flammable ? req.body.is_flammable : false
+    
 }
 
 

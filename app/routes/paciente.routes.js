@@ -7,8 +7,6 @@ module.exports = app => {
 
     router.get("/", patients.findAll);
 
-    router.get("/flammables", patients.findAllFlammables);
-
     router.get("/:id", patients.findOne);
 
     router.put("/:id", patients.update);

@@ -3,14 +3,14 @@ module.exports = app => {
 
     var router = require("express").Router();
 
-    router.post("/consulta", consultas.create);
+    router.post("/", consultas.create);
 
-    router.get("/consulta", consultas.findAll);
+    router.get("/", consultas.findAll);
 
     router.put("/:id", consultas.update);
 
     router.delete("/:id", consultas.delete);
 
-    app.use('/api/consulta', router);
+    app.use('/api/consultas', router);
 
 };

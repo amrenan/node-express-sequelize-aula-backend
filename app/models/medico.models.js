@@ -1,8 +1,5 @@
-const { doctors } = require(".");
-
 module.exports = (sequelize, Sequelize) =>{
     const Doctor = sequelize.define("doctors", {
-        
         
         name: {
             type: Sequelize.STRING,
@@ -24,15 +21,8 @@ module.exports = (sequelize, Sequelize) =>{
 
         contact: {
             type: Sequelize.STRING,
-        },
-        
-
-        is_flammable: {
-            type: Sequelize.BOOLEAN
         }
     });
-    Doctor.belongsToMany (Patient,
-        {through: Consulta});
-        Doctor.hasMany(Consulta);
+    return Doctor;
 };
 
