@@ -26,7 +26,7 @@ Consulta.create(consultas)
      .catch(err => {
          res.status(500).send({
              message:
-             err.message || "Ocorreu um erro ao criar um item."
+             err.message || "Ocorreu um erro ao criar uma consulta."
          })
      })
 
@@ -44,7 +44,7 @@ exports.findAll = (req, res) => {
     .catch(err =>{
         res.status(500).send({
             message:
-            err.message || "Ocorreu um erro ao listar os itens."
+            err.message || "Ocorreu um erro ao listar as consultas."
         })
     });
 };
@@ -58,13 +58,13 @@ exports.findOne = (req, res) => {
             res.send(data);
         } else {
             res.status(404).send({
-                message: `Não foi possível encontrar um item com o id = ${id}.`
+                message: `Não foi possível encontrar a consulta com o id = ${id}.`
         });
         }
     })
     .catch(err => {
         res.status(500).send({
-         message: "Ocorreu um erro ao tentar encontrar um item com o id = " + id   
+         message: "Ocorreu um erro ao tentar encontrar a consulta com o id = " + id   
         });
     });
 
@@ -79,17 +79,17 @@ exports.update = (req, res) => {
     .then(num => {
         if (num == 1) {
             res.send({
-                message: "O item foi atualizado de maneira bem sucedida."
+                message: "Consulta atualizada com sucesso."
             });
         } else {
             res.send({
-              message: `Não foi possível atualizar o item com id=${id}.`  
+              message: `Não foi possível atualizar esta consulta id=${id}.`  
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Ocorreu um erro ao tentar atualizar um item com o id=" + id
+            message: "Ocorreu um erro ao tentar atualizar a consulta id=" + id
         });
     });
 
@@ -104,17 +104,17 @@ exports.delete = (req, res) => {
     .then(num => {
         if (num == 1){
             res.send({
-                message: "O item foi apagado com sucesso!"
+                message: "Consulta apagada com sucesso!"
             });
         } else {
             res.send({
-                message: `Não foi possível apagar o item com o id=${id}.`
+                message: `Não foi possível apagar os dados da consulta id=${id}.`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Ocorreu um erro ao tentar apagar o item com o id=" + id
+            message: "Ocorreu um erro ao tentar apagar a consulta com o id=" + id
         });
     });
 

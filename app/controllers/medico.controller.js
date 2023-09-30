@@ -29,7 +29,7 @@ exports.create = (req, res) => {
      .catch(err => {
          res.status(500).send({
              message:
-             err.message || "Ocorreu um erro ao criar um item."
+             err.message || "Ocorreu um erro ao armazenar dados do médico."
          })
      })
 
@@ -46,7 +46,7 @@ exports.findAll = (req, res) => {
     .catch(err =>{
         res.status(500).send({
             message:
-            err.message || "Ocorreu um erro ao listar os itens."
+            err.message || "Ocorreu um erro ao listar os médicos."
         })
     });
 };
@@ -60,13 +60,13 @@ exports.findOne = (req, res) => {
             res.send(data);
         } else {
             res.status(404).send({
-                message: `Não foi possível encontrar um item com o id = ${id}.`
+                message: `Não foi possível encontrar o médico id = ${id}.`
         });
         }
     })
     .catch(err => {
         res.status(500).send({
-         message: "Ocorreu um erro ao tentar encontrar um item com o id = " + id   
+         message: "Ocorreu um erro ao tentar encontrar o médico id = " + id   
         });
     });
 
@@ -81,17 +81,17 @@ exports.update = (req, res) => {
     .then(num => {
         if (num == 1) {
             res.send({
-                message: "O item foi atualizado de maneira bem sucedida."
+                message: "Os dados foram atualizado com sucesso."
             });
         } else {
             res.send({
-              message: `Não foi possível atualizar o item com id=${id}.`  
+              message: `Não foi possível atualizar os dados id=${id}.`  
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Ocorreu um erro ao tentar atualizar um item com o id=" + id
+            message: "Ocorreu um erro ao tentar atualizar os dados id=" + id
         });
     });
 
@@ -106,17 +106,17 @@ exports.delete = (req, res) => {
     .then(num => {
         if (num == 1){
             res.send({
-                message: "O item foi apagado com sucesso!"
+                message: "O item foi excluído com sucesso!"
             });
         } else {
             res.send({
-                message: `Não foi possível apagar o item com o id=${id}.`
+                message: `Não foi possível excluir o item id=${id}.`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Ocorreu um erro ao tentar apagar o item com o id=" + id
+            message: "Ocorreu um erro ao tentar apagar este item id=" + id
         });
     });
 
@@ -128,28 +128,13 @@ exports.deleteAll = (req, res) => {
         truncate: false
     })
     .then(nums => {
-        res.send({ message: `${nums} Itens foram apagados com sucesso.`});
+        res.send({ message: `${nums} Informação apagada com sucesso.`});
     })
     .catch(err =>{
         res.status(500).send({
             message:
-            err.message || "Houve algum erro ao tentar apagar todos os itens."
+            err.message || "Houve algum erro ao tentar apagar os dados dos itens."
         });
     });
 };
 
-exports.findAllFlammables = (req, res) => {
-    Doctor.findAll({ where: {is_flammable: true } })
-    .then(data => {
-        res.sende(data);
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Algum erro ocorreu ao tentar pesquisar todos os itens inflamáveis."
-        });
-    });
-
-    
-
-};
