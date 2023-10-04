@@ -1,4 +1,9 @@
+const { HasMany } = require("sequelize");
+const Consulta = require("./consulta.models");
+const { patients, consultas } = require(".");
+
 module.exports = (sequelize, Sequelize) =>{
+
     const Patient = sequelize.define("patients", {
         
         name: {
@@ -7,8 +12,9 @@ module.exports = (sequelize, Sequelize) =>{
         },
 
         cpf: {
-            type: Sequelize.INTEGER,
-            uallowNull: false
+            type: Sequelize.STRING(11),
+            unique: true,
+            primaryKey: true
         },
         
         address: {
@@ -17,12 +23,12 @@ module.exports = (sequelize, Sequelize) =>{
         },
 
         cns: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING(12),
             allowNull: false
         },
 
         contact: {
-            type: Sequelize.INTEGER
+            type: Sequelize.STRING(11)
         },
         
         description: {
@@ -30,7 +36,9 @@ module.exports = (sequelize, Sequelize) =>{
             
         }
     });
-    
+  
     return Patient;
+    
+    
 };
 

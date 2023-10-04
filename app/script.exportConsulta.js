@@ -7,7 +7,7 @@ const Consulta = require('./models/consulta.models.js');
 
 /* O cógico abaixo faz o export dos dados das tabelas 
 de Doctor e Patient para a tabela Consultas. Mas ainda não foi testado.*/
-
+/*
 const exportConsulta = async () => {
     try {
         const doctors = await
@@ -31,4 +31,4 @@ const exportConsulta = async () => {
     }
 };
 
-exportConsulta();
+exportConsulta();*/

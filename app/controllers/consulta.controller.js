@@ -15,11 +15,38 @@ exports.create = (req, res) => {
   const consultas = {
     date: req.body.date,
     hour: req.body.hour,
-    
+    doctorCrm: req.body.doctorCrm
+     
 }
+    exports.createConsultaForPatient = 
+    async (req, res) => {
+        try{
+            const {date, patientCpf} = req.body;
+            const patient = await 
+            Consulta.findByPk(patientCpf);
 
+            if (!patient) {
+                return
+                res.status(404).json({error: 'Paciente não encontrado.'});
 
-Consulta.create(consultas)
+            }
+        const newConsulta = {
+        date: new Date(),
+        PatientCpf: patientCpf
+        }
+        const consulta = await 
+        consulta.create(newConsulta);
+        return res.json(consulta);
+           
+    } catch (error) {
+        return
+        res.status(500).json({ error: 'Erro ao criar consulta médica.'});
+
+    }
+    
+ };
+    
+Consulta.create(Consulta) 
      .then(data => {
          res.send(data);
      })
@@ -28,10 +55,11 @@ Consulta.create(consultas)
              message:
              err.message || "Ocorreu um erro ao criar uma consulta."
          })
-     })
+     });
+    
+}
 
 
-}; 
 
 exports.findAll = (req, res) => {
     const name = req.body.name;
@@ -117,6 +145,10 @@ exports.delete = (req, res) => {
             message: "Ocorreu um erro ao tentar apagar a consulta com o id=" + id
         });
     });
+
+
+
+
 
 };
 

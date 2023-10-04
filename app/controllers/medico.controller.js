@@ -18,7 +18,6 @@ exports.create = (req, res) => {
         address: req.body.address,
         especialidade: req.body.especialidade,
         contact: req.body.contact,
-        is_flammable: req.body.is_flammable ? req.body.is_flammable : false
 
      }
 

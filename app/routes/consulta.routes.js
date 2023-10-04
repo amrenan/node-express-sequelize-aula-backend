@@ -1,16 +1,17 @@
 module.exports = app => {
-    const consultas = require("../controllers/consulta.controller.js");
+    const consulta = require("../controllers/consulta.controller.js");
 
     var router = require("express").Router();
 
-    router.post("/", consultas.create);
+    router.post("/", consulta.create);
 
-    router.get("/", consultas.findAll);
+    router.get("/", consulta.findAll);
 
-    router.put("/:id", consultas.update);
+    router.put("/:id", consulta.update);
 
-    router.delete("/:id", consultas.delete);
+    router.delete("/:id", consulta.delete);
 
     app.use('/api/consultas', router);
+
 
 };

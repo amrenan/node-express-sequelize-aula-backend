@@ -18,8 +18,8 @@ exports.create = (req, res) => {
         address: req.body.address,
         cns: req.body.cns,
         contact: req.body.contact,
-        description: req.body.description,
-        is_flammable: req.body.is_flammable ? req.body.is_flammable : false
+        description: req.body.description
+        
 
      }
 
